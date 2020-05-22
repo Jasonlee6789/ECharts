@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECharts-Jing</title>
+    <link rel="stylesheet" href="css/index.css">
+
+</head>
+
+<body>
+    <script src="flexible.js"></script>
+    <header>
+        <h1>李靖 数据可视化-ECharts</h1>
+        <div class="showTime">123</div>
+        <script>
+            var t = null;
+            t = setTimeout(time, 1000); // start running time
+            function time() {
+                clearTimeout(t); //清除定时器
+                dt = new Date();
+                var y = dt.getFullYear();
+                var mt = dt.getMonth() + 1;
+                var day = dt.getDate();
+                var h = dt.getHours();
+                var m = dt.getMinutes();
+                var s = dt.getSeconds();
+
+            }
+        </script>
+    </header>
+    <div class="box"></div>
+</body>
+
+</html>
