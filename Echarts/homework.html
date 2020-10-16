@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>树形组件</title>
+    <style>
+        #main{
+            margin: 20px;
+            width: 700px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <!--建立dom 容器-->
+    <div id="main"></div>
+    <!--引入echarts-->
+    <script src="https://lib.baomitu.com/echarts/4.7.0/echarts.min.js"></script>
+    <script>
+        /*基于准备好的dom，初始化echarts实例*/
+        const myChart = echarts.init(document.getElementById('main'));
+    myChart.showLoading();
+    fetch('./data/shu.json')
+    .then((res) => res.json())
+    .then(function (data) {
+    myChart.hideLoading();
+    echarts.util.each(data.children, function (datum, index) {
+        index % 2 === 0 && (datum.collapsed = true);
+    });
+        /*指定图表的配置项和数据*/
+    myChart.setOption(option = {
+        title:{
+                //树图的标题叫“树图”。
+            text:'树图',
+            subtext:'李靖',
+            left:'center',
+//标题颜色为深红色maroon。
+            textStyle:{
+                color:'maroon',
+                fontSize:24
+            },
+            subtextStyle:{
+                color:'maroon',
+                fontSize:18
+            },
+
+        },
+        tooltip: {
+            trigger: 'item',
+            triggerOn: 'mousemove'
+        },
+        series: [
+            {
+                type: 'tree',
+
+                data: [data],
+
+                top: '1%',
+                left: '7%',
+                bottom: '1%',
+                right: '20%',
+
+                symbolSize: 7,
+
+                label: {
+                    position: 'left',
+                    verticalAlign: 'middle',
+                    align: 'right',
+                    fontSize: 9
+                },
+
+                leaves: {
+                    label: {
+                        position: 'right',
+                        verticalAlign: 'middle',
+                        align: 'left'
+                    }
+                },
+
+                expandAndCollapse: true,
+                animationDuration: 550,
+                animationDurationUpdate: 750
+            }
+        ]
+    });
+});
+</script>
+</body>
+</html>
